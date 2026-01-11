@@ -116,7 +116,7 @@ def main():
         figure_number = 7 + i  # i starts at 1 → 08, 09, 10
 
         plt.savefig(
-            f"{figures_direction}/{figure_number}_{name.lower().replace(' ', '_')}_prediction.png",
+            f"{figures_direction}/0{+figure_number}_{name.lower().replace(' ', '_')}_prediction.png",
             dpi=300
         )
         plt.close()
@@ -145,7 +145,7 @@ def main():
     axes[1].grid(axis="y", alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig(f"{figures_direction}/7_model_comparison.png", dpi=300)
+    plt.savefig(f"{figures_direction}/07_model_comparison.png", dpi=300)
     plt.close()
 
     print("Model comparison saved")
