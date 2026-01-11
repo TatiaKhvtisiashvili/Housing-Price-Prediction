@@ -4,15 +4,22 @@ Visualization functions for EDA.
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np  # ← FIXED: Added this import
+import numpy as np
 
 def save_plot(fig, filename):
-    """Save figure to file."""
+    """Saving figure to file."""
     fig.savefig(filename, dpi=100, bbox_inches='tight')
     plt.close(fig)
 
 def plot_histogram(df, column, title):
-    """Plot histogram for a column."""
+    """
+    Creating and returning a histogram for a numerical column.
+
+    Parameters:
+    - df (pd.DataFrame): Input dataset
+    - column (str): Column to visualize
+    - title (str): Plot title
+    """
     fig, ax = plt.subplots(figsize=(10, 6))
     df[column].hist(bins=50, ax=ax, edgecolor='black', alpha=0.7)
     ax.set_title(title, fontsize=14, fontweight='bold')
@@ -22,7 +29,7 @@ def plot_histogram(df, column, title):
     return fig
 
 def plot_scatter(df, x_col, y_col, title):
-    """Plot scatter plot with regression line."""
+    """Plotting scatter plot with regression line."""
     fig, ax = plt.subplots(figsize=(10, 6))
     sns.regplot(x=x_col, y=y_col, data=df, ax=ax, scatter_kws={'alpha': 0.3})
     ax.set_title(title, fontsize=14, fontweight='bold')
@@ -32,7 +39,7 @@ def plot_scatter(df, x_col, y_col, title):
     return fig
 
 def plot_heatmap(df, title):
-    """Plot correlation heatmap."""
+    """Plotting correlation heatmap."""
     numeric_df = df.select_dtypes(include=[np.number])
     corr = numeric_df.corr()
 
@@ -43,7 +50,7 @@ def plot_heatmap(df, title):
     return fig
 
 def plot_boxplot(df, x_col, y_col, title):
-    """Plot boxplot."""
+    """Plotting boxplot."""
     fig, ax = plt.subplots(figsize=(10, 6))
     sns.boxplot(x=x_col, y=y_col, data=df, ax=ax)
     ax.set_title(title, fontsize=14, fontweight='bold')
@@ -54,7 +61,7 @@ def plot_boxplot(df, x_col, y_col, title):
     return fig
 
 def plot_pairplot(df, columns, title=None):
-    """Create pair plot for selected columns."""
+    """Creating pair plot for selected columns."""
     pairplot = sns.pairplot(df[columns], diag_kind='kde',
                             plot_kws={'alpha': 0.6, 's': 30},
                             diag_kws={'alpha': 0.7})
@@ -63,7 +70,7 @@ def plot_pairplot(df, columns, title=None):
     return pairplot.fig
 
 def plot_violin(df, x_col, y_col, title):
-    """Plot violin plot."""
+    """Plotting violin plot."""
     fig, ax = plt.subplots(figsize=(12, 6))
     sns.violinplot(x=x_col, y=y_col, data=df, ax=ax)
     ax.set_title(title, fontsize=14, fontweight='bold')

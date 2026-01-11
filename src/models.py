@@ -12,7 +12,7 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
 def prepare_data(df, target_col='median_house_value', test_size=0.2):
     """
-    Split features and target into train and test sets.
+    Splitting features and target into train and test sets.
     """
     if target_col not in df.columns:
         raise ValueError(f"Target column '{target_col}' not found in DataFrame")
@@ -28,7 +28,7 @@ def prepare_data(df, target_col='median_house_value', test_size=0.2):
 
 def train_linear_regression(X_train, y_train, X_test, y_test):
     """
-    Train and evaluate a Linear Regression model.
+    Training and evaluating a Linear Regression model.
     Returns trained model and evaluation metrics.
     """
 
@@ -49,7 +49,7 @@ def train_linear_regression(X_train, y_train, X_test, y_test):
     return results
 
 def train_decision_tree(X_train, y_train, X_test, y_test):
-    """Train and evaluate Decision Tree."""
+    """Training and evaluating Decision Tree."""
     model = DecisionTreeRegressor(max_depth=10, random_state=42)
     model.fit(X_train, y_train)
 
@@ -68,7 +68,7 @@ def train_decision_tree(X_train, y_train, X_test, y_test):
     return results
 
 def train_random_forest(X_train, y_train, X_test, y_test):
-    """Train and evaluate Random Forest (bonus)."""
+    """Training and evaluating Random Forest (bonus)."""
     model = RandomForestRegressor(n_estimators=100, max_depth=15, random_state=42)
     model.fit(X_train, y_train)
 

@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 def load_data(file_path):
-    """Load dataset from CSV."""
+    """Loading dataset from CSV."""
     try:
         return pd.read_csv(file_path)
     except FileNotFoundError:
@@ -11,13 +11,13 @@ def load_data(file_path):
 
 
 def handle_missing_values(df):
-    """Fill missing values with median."""
+    """Filling missing values with median."""
     df = df.copy()
     df['total_bedrooms'] = df['total_bedrooms'].fillna(df['total_bedrooms'].median())
     return df
 
 def remove_outliers(df):
-    """Remove outliers from features (not target)."""
+    """Removing outliers from features (not target)."""
     df = df.copy()
     numeric_cols = df.select_dtypes(include=np.number).columns
     numeric_cols = [col for col in numeric_cols if col != 'median_house_value']
@@ -31,7 +31,7 @@ def remove_outliers(df):
     return df
 
 def create_features(df):
-    """Create new features from existing data."""
+    """Creating new features from existing data."""
     df = df.copy()
 
     # Household features
@@ -42,22 +42,21 @@ def create_features(df):
     return df
 
 def preprocess_data(file_path, save_path=None):
-    """Complete preprocessing pipeline. Load data"""
+    """Completing preprocessing pipeline. Load data"""
     df = load_data(file_path)
 
-    """Handle missing values"""
+    # Handle missing values
     df = handle_missing_values(df)
 
-    """Remove outliers"""
+    # Remove outliers
     df = remove_outliers(df)
 
-    """Create features"""
+    # Create features
     df = create_features(df)
 
-    """One-hot encode categorical"""
+    # One-hot encode categorical
     df = pd.get_dummies(df, columns=['ocean_proximity'], drop_first=True)
 
-    """Save if needed"""
     if save_path:
         df.to_csv(save_path, index=False)
 
