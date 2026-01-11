@@ -40,9 +40,9 @@ def create_sample_data():
 
 
 def main():
-    print("\n" + "=" * 60)
+    print("\n" + "★" * 60)
     print("HOUSING PRICE PREDICTION – EXAMPLE")
-    print("=" * 60)
+    print("★" * 60)
 
     if not os.path.exists(MODEL_PATH):
         print("\nError: Trained model not found.")
@@ -65,10 +65,10 @@ def main():
     prediction = model.predict(sample)[0]
 
     print("\nPredicted median house value:")
-    print(f"➡ ${prediction:,.2f}")
+    print(f"{prediction:,.2f}")
 
-    print("\nNote: This is a demonstration using the trained Random Forest model.")
-    print("=" * 60)
+    print("\nThis is a demonstration using the trained Random Forest model.")
+    print("★" * 60)
 
 
 if __name__ == "__main__":
